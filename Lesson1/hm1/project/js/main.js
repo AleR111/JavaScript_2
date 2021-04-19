@@ -6,15 +6,13 @@ const products = [
     {id: 4, title: 'Gamepad', price: 4500},
 ];
 
-const renderProduct = (title, price) => {
-    return `<div class="product-item">
-                <h3 class="product-item__header">${title}</h3>
-                <p class="product-item__text">${price}</p>
-                <button class="by-btn">Добавить в корзину</button>
-              </div>`;
-}
+const renderProduct = (title, price) => `<div class="product-item">
+                                         <h3 class="product-item__header">${title}</h3>
+                                         <p class="product-item__text">${price}</p>
+                                         <button class="by-btn">Добавить в корзину</button>
+                                         </div>`
 
-const renderProducts = (list) => {
+const renderProducts = (list = products) => {
     const productListHTML = list.map((item) => renderProduct(item.title, item.price));
     // list.forEach(elem => document.querySelector('.products').insertAdjacentHTML("afterend", renderProduct(elem.title, elem.price)))
     // console.log(productListHTML);
@@ -22,4 +20,4 @@ const renderProducts = (list) => {
     // document.querySelector('.products').innerHTML = productListHTML;
 }
 
-renderProducts(products);
+renderProducts();
