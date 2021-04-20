@@ -15,9 +15,8 @@ const renderProduct = (title, price) => `<div class="product-item">
 const renderProducts = (list = products) => {
     const productListHTML = list.map((item) => renderProduct(item.title, item.price));
     // list.forEach(elem => document.querySelector('.products').insertAdjacentHTML("afterend", renderProduct(elem.title, elem.price)))
-    // console.log(productListHTML);
-    productListHTML.forEach(elem => document.querySelector('.products').insertAdjacentHTML("beforeend", elem))
-    // document.querySelector('.products').innerHTML = productListHTML;
+    // productListHTML.forEach(elem => document.querySelector('.products').insertAdjacentHTML("beforeend", elem))
+    document.querySelector('.products').innerHTML = productListHTML.join('');
 }
 
 renderProducts();
