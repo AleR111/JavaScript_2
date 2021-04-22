@@ -29,6 +29,12 @@ class ProductList {
             block.insertAdjacentHTML('afterbegin', productObject.render());
         }
     }
+
+    getTotalPriceOfProduct() {
+       return this.goods.reduce((total, elem) =>
+           total +=  elem.price
+        , 0)
+    }
 }
 
 class ProductItem {
@@ -50,4 +56,6 @@ class ProductItem {
                   </div>`;
     }
 }
-new ProductList();
+const product = new ProductList();
+console.log(product.getTotalPriceOfProduct());
+
