@@ -59,3 +59,18 @@ class ProductItem {
 const product = new ProductList();
 console.log(product.getTotalPriceOfProduct());
 
+// task 1
+// class CartList{
+// constructor(){...}
+// render()
+// remoteItem()
+// buyAllCart()
+// getTotalPriceOfCart()
+// }
+//
+// class CartItem{
+// constructor(){...}
+// render()
+// increaseAmount()
+// decreaseAmount()
+// }
