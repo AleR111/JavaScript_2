@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacRonald's</title>
+    <style>
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+        .burger {
+            display: flex;
+            gap: 16px;
+        }
+
+        .label {
+            display: block;
+        }
+    </style>
+    <script src="macronalds.js" defer></script>
+</head>
+<body>
+<header class="header container">
+<h1>MacRonald</h1>
+</header>
+<main class="container">
+    <header>
+        <h2>Конструктор бургеров</h2>
+    </header>
+    <h3>Выберите бургер</h3>
+    <div class="burger">
+
+        <div class="burger__choice">
+            <h4>Выберите размер</h4>
+            <label class="label" for="size_s">
+                <input name="size" id="size_s" type="radio" value="s"> Маленький
+            </label>
+            <label class="label" for="size_l">
+                <input name="size" id="size_l" type="radio" value="l"> Большой
+            </label>
+        </div>
+
+        <div class="burger__choice">
+            <h4>Выберите начинку</h4>
+            <label class="label" for="cheese">
+                <input name="stuffing" id="cheese" type="radio" value="cheese"> С сыром
+            </label>
+            <label class="label" for="salad">
+                <input name="stuffing" id="salad" type="radio" value="salad"> С салатом
+            </label>
+            <label class="label" for="potato">
+                <input name="stuffing" id="potato" type="radio" value="potato"> С картофелем
+            </label>
+        </div>
+
+        <div class="burger__choice">
+            <h4>Добавить приправы</h4>
+            <label class="label" for="spices">
+                <input name="toppings" id="spices" type="checkbox" value="spices"> Посыпать специями
+            </label>
+            <label class="label" for="mayo">
+                <input name="toppings" id="mayo" type="checkbox" value="mayo"> Полить майонезом
+            </label>
+        </div>
+    </div>
+    <div class="calc">
+        <h5>Общее количество каллорий: <span class="total-cal"></span></h5>
+        <h5>Общая стоимость: <span class="total-price"></span></h5>
+    </div>
+</main>
+</body>
+</html>
