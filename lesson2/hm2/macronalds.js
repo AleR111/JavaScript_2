@@ -40,13 +40,13 @@ class CalcBurger {
         for (const elem of radios) {
             elem.addEventListener('click',  () => {
                 switch (elem.name) {
-                    case this.caseSize: this.paramSize = elem.value;
+                    case this.caseSize: this.paramSize = elem.id;
                     break;
-                    case this.caseStuffing: this.paramStuf = elem.value;
+                    case this.caseStuffing: this.paramStuf = elem.id;
                     break;
                     case this.caseToppings: if(elem.checked) {
-                        this.paramTopping.push(elem.value);
-                    } else this.paramTopping.shift();
+                        this.paramTopping.push(elem.id);
+                    } else this.paramTopping.splice(this.paramTopping.indexOf(elem.id),1);
                 }
                 this.canCalculate()
             })
