@@ -3,19 +3,22 @@
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
 // Переделать в ДЗ не использовать fetch а Promise
-let getRequest = (url, cb) => {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.onreadystatechange = () => {
-        if (xhr.readyState === 4) {
-            if (xhr.status !== 200) {
-                console.log('Error');
-            } else {
-                cb(xhr.responseText);
-            }
+let getRequest = (url) => {
+    return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState === 4) {
+                    if (xhr.status !== 200) {
+                        reject('Error');
+                    } else {
+                        resolve(xhr.responseText);
+                    }
+                }
+            };
+            xhr.send();
         }
-    };
-    xhr.send();
+    )
 };
 
 // –--------------------------------
@@ -26,31 +29,32 @@ class ProductList {
         this._goods = [];
         this._allProducts = [];
 
-        // this._fetchGoods();
+        this._fetchGoods();
         // this._render();
 
-        this._getProducts()
-            .then((data) => {
-                this._goods = data;
+        // this._getProducts()
+        //     .then((data) => {
+        //         this._goods = data;
+        //         this._render();
+        //     });
+    }
+
+    _fetchGoods() {
+        getRequest(`${API}/catalogData.json`)
+            .then(data => {
+                this._goods = JSON.parse(data);
+                console.log(this._goods);
                 this._render();
-            });
+            })
     }
 
-    // _fetchGoods() {
-    //     getRequest(`${API}/catalogData.json`, (data) => {
-    //         this._goods = JSON.parse(data);
-    //         console.log(this._goods);
-    //         this._render();
-    //     });
+    // _getProducts() {
+    //     return fetch(`${API}/catalogData.json`)
+    //         .then((response) => response.json())
+    //         .catch((error) => {
+    //             console.log(error);
+    //         });
     // }
-
-    _getProducts() {
-        return fetch(`${API}/catalogData.json`)
-            .then((response) => response.json())
-            .catch((error) => {
-                console.log(error);
-            });
-    }
 
     _render() {
         const block = document.querySelector(this.container);
@@ -64,9 +68,9 @@ class ProductList {
     }
 
     getTotalPriceOfProduct() {
-       return this._goods.reduce((total, elem) =>
-           total +=  elem.price
-        , 0)
+        return this._goods.reduce((total, elem) =>
+                total += elem.price
+            , 0)
     }
 }
 
@@ -89,5 +93,8 @@ class ProductItem {
                   </div>`;
     }
 }
+
+
+
 const product = new ProductList();
 console.log(product.getTotalPriceOfProduct());

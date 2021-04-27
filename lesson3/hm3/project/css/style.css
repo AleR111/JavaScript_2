@@ -23,13 +23,16 @@ button:hover {
 
 .header {
     display: flex;
+    position: relative;
+    justify-content: space-between;
     align-items: center;
     height: 70px;
     background-color: #14171ad4;
     padding-left: 24px;
+    padding-right: 24px;
 }
 
-.btn-cart {
+.btn-header {
     color: #e2e2e2;
     font-size: 16px;
     border: 1px solid #e2e2e2;
@@ -37,11 +40,20 @@ button:hover {
     padding: 4px;
     background: none;
 }
-.btn-cart:hover {
+.btn-header:hover {
     cursor: pointer;
     color: #ea7267;
 }
 
+.cart__box {
+    position: absolute;
+    visibility: hidden;
+    right: 0;
+    top: 70px;
+    width: 350px;
+    min-height: 50px;
+    background-color: rgb(237, 239, 241);
+}
 .products {
     display: flex;
     justify-content: space-between;
