@@ -24,9 +24,10 @@ const app = new Vue({
             console.log(product.id_product);
         },
         filterGoods() {
+            const regExp = new RegExp(this.searchLine, 'igy');
             this.productsSearched = [];
             this.products.forEach(elem => {
-                if(elem.product_name.toLocaleLowerCase().includes(this.searchLine.toLocaleLowerCase())) this.productsSearched.push(elem)
+                if(elem.product_name.match(regExp)) this.productsSearched.push(elem)
             });
 
             console.log(this.productsSearched)
