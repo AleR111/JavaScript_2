@@ -4,12 +4,12 @@ Vue.component('products', {
             catalogUrl: '/catalogData.json',
             products: [],
             filtered: [],
-            imgCatalog: 'https://placehold.it/200x150',
+            imgCatalog: 'https://via.placeholder.com/200x150',
         }
     },
     methods: {
         filter(){
-            let regexp = new RegExp(this.userSearch, 'i');
+            let regexp = new RegExp(app.userSearch, 'iy');
             this.filtered = this.products.filter(el => regexp.test(el.product_name));
         }
     },
