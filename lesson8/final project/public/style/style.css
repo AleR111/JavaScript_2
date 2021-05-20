@@ -1454,7 +1454,8 @@ label {
   .filters_center {
     margin-left: auto;
   }
-  .product__card_hidden {
+
+  .product__card:nth-child(3) {
     display: none;
   }
 }
