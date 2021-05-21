@@ -32,7 +32,7 @@ Vue.component('product', {
     props: ['product', 'img'],
     data() {
       return {
-          cartAPI: this.$root.$refs.cart,
+          cartAPI: API.cart,
       };
     },
 

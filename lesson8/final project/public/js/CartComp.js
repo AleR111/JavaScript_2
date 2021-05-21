@@ -9,6 +9,7 @@ Vue.component('cart', {
     },
     methods: {
         addProduct(product) {
+            console.log(123)
             let find = this.cartItems.find(el => el.id_product === product.id_product);
             if (find) {
                 this.$parent.putJson(`/api/cart/${find.id_product}`, {quantity: 1});
@@ -24,17 +25,28 @@ Vue.component('cart', {
             }
         },
         remove(item) {
-            this.$parent.getJson(`${API}/deleteFromBasket.json`)
+            this.$parent.deleteJson(`/api/cart/${item.id_product}`, item)
                 .then(data => {
-                    if (data.result === 1) {
-                        if (item.quantity > 1) {
-                            item.quantity--;
-                        } else {
-                            this.cartItems.splice(this.cartItems.indexOf(item), 1)
-                        }
+                    if(data.result === 1) {
+                        this.cartItems.splice(this.cartItems.indexOf(item), 1)
                     }
                 })
         },
+        removeAll() {
+            this.$parent.deleteJson(`/api/allCart`)
+                .then(data => {
+                    if (data.result === 1) {
+                            this.cartItems = []
+                    }
+                })
+        },
+    },
+    computed: {
+        getTotalPriceOfProduct() {
+            return this.cartItems.reduce((total, elem) =>
+                    total += elem.price * elem.quantity
+                , 0)
+        }
     },
     mounted() {
         this.$parent.getJson('/api/cart')
@@ -68,14 +80,14 @@ Vue.component('cart', {
                 :img="imgCart"
                 @remove="remove">
                 </cart-item>
-                <div v-show="!showCart" class="item-cart__box-butt">
-                    <button class="item-cart__butt">CLEAR SHOPPING CART</button>
+                <div v-show="cartItems.length" class="item-cart__box-butt">
+                    <button class="item-cart__butt" @click = "removeAll">CLEAR SHOPPING CART</button>
                     <button class="item-cart__butt">CONTINUE SHOPPING</button>
                 </div>
             
             </div>
             
-            <cart-block__right :cart-item="cartItems"></cart-block__right>
+            <cart-block__right :totalPrice="getTotalPriceOfProduct" :cart-item="cartItems"></cart-block__right>
         </div>
 `
 });
@@ -106,18 +118,18 @@ Vue.component('cart-item', {
                         <li>Price: <span class="select_text">\${{cartItem.price}}</span></li>
                         <li>Color: <span>Red</span></li>
                         <li>Size: <span>Xl</span></li>
-                        <li>Quantity: <input class="order__param_quantity" type="number" value="1" min="0" max="100">
+                        <li>Quantity: <input class="order__param_quantity" type="number" :value="cartItem.quantity" min="0" max="100">
                         </li>
                     </ul>
                 </div>
                 <button class="butt-clouse"><img class="butt-clouse__img" src="img/butt_clouse.svg"
-                                                 alt="clouse"></button>
+                                                 alt="clouse" @click="$emit('remove', cartItem)"></button>
             </div>
     `
 });
 
 Vue.component('cart-block__right', {
-    props: ['cartItem'],
+    props: ['cartItem', 'totalPrice'],
     template: `            
             <div class="cart-block__right">
             <form action="#" class="form cart-block__form">
@@ -129,10 +141,10 @@ Vue.component('cart-block__right', {
             </form>
             <div class="checkout">
                 <ul class="checkout__content">
-                    <li class="checkout__cost">SUB TOTAL <span class="checkout__cost_money"></span>$900</li>
+                    <li class="checkout__cost">SUB TOTAL <span class="checkout__cost_money"></span>\${{totalPrice}}</li>
                     <li class="checkout__cost select_text">GRAND TOTAL
                         <hr class="checkout__cost_rule">
-                        <span class="checkout__cost_money select">$900</span>
+                        <span class="checkout__cost_money select">\${{totalPrice}}</span>
                     </li>
                 </ul>
                 <hr class="checkout__rule">
