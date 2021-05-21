@@ -75,26 +75,7 @@ Vue.component('cart', {
             
             </div>
             
-            <div class="cart-block__right">
-        <form action="#" class="form cart-block__form">
-            <h3 class="form__heading">SHIPPING ADRESS</h3>
-            <input class="form__input" type="text" placeholder="Bangladesh">
-            <input class="form__input" type="text" placeholder="State">
-            <input class="form__input cart-block__input" type="text" placeholder="Postcode / Zip">
-            <button class="form__butt cart-block__butt">GET A QUOTE</button>
-        </form>
-        <div class="checkout">
-            <ul class="checkout__content">
-                <li class="checkout__cost">SUB TOTAL <span class="checkout__cost_money"></span>$900</li>
-                <li class="checkout__cost select_text">GRAND TOTAL
-                    <hr class="checkout__cost_rule">
-                    <span class="checkout__cost_money select">$900</span>
-                </li>
-            </ul>
-            <hr class="checkout__rule">
-            <button class="checkout__butt">PROCEED TO CHECKOUT</button>
-        </div>
-    </div>
+            <cart-block__right :cart-item="cartItems"></cart-block__right>
         </div>
 `
 });
@@ -132,5 +113,31 @@ Vue.component('cart-item', {
                 <button class="butt-clouse"><img class="butt-clouse__img" src="img/butt_clouse.svg"
                                                  alt="clouse"></button>
             </div>
+    `
+});
+
+Vue.component('cart-block__right', {
+    props: ['cartItem'],
+    template: `            
+            <div class="cart-block__right">
+            <form action="#" class="form cart-block__form">
+                <h3 class="form__heading">SHIPPING ADRESS</h3>
+                <input class="form__input" type="text" placeholder="Bangladesh">
+                <input class="form__input" type="text" placeholder="State">
+                <input class="form__input cart-block__input" type="text" placeholder="Postcode / Zip">
+                <button class="form__butt cart-block__butt">GET A QUOTE</button>
+            </form>
+            <div class="checkout">
+                <ul class="checkout__content">
+                    <li class="checkout__cost">SUB TOTAL <span class="checkout__cost_money"></span>$900</li>
+                    <li class="checkout__cost select_text">GRAND TOTAL
+                        <hr class="checkout__cost_rule">
+                        <span class="checkout__cost_money select">$900</span>
+                    </li>
+                </ul>
+                <hr class="checkout__rule">
+                <button class="checkout__butt">PROCEED TO CHECKOUT</button>
+            </div>
+        </div>
     `
 });
