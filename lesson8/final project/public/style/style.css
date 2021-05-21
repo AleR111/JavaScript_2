@@ -1180,6 +1180,11 @@ ul {
   background-color: rgba(33, 184, 96, 0.514);
 }
 
+.cart__text_empty {
+  font-weight: 700;
+  font-size: 24px;
+}
+
 .item-cart {
   width: 652px;
 }
