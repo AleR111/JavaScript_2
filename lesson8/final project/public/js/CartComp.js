@@ -9,7 +9,6 @@ Vue.component('cart', {
     },
     methods: {
         addProduct(product) {
-            console.log(123)
             let find = this.cartItems.find(el => el.id_product === product.id_product);
             if (find) {
                 this.$parent.putJson(`/api/cart/${find.id_product}`, {quantity: 1});

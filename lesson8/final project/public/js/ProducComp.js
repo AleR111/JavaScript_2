@@ -9,6 +9,7 @@ Vue.component('products', {
     },
     methods: {
         filter(value){
+            console.log(123)
             let regexp = new RegExp(value, 'i');
             this.filtered = this.products.filter(el => regexp.test(el.product_name));
         }
