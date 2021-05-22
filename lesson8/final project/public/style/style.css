@@ -117,6 +117,34 @@ button {
   margin-left: 41px;
 }
 
+.btn-search {
+  background-color: transparent;
+  border: none;
+  color: #fafafa;
+  font-size: 1.2em;
+  position: absolute;
+  bottom: 5px;
+  right: 0;
+}
+.search-form{
+  position: relative;
+  margin-right: 50px;
+  display: inline-block;
+}
+.search-field:focus{
+  outline: none;
+}
+
+.search-field {
+  box-sizing: border-box;
+  width: 200px;
+  color: #fafafa;
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #fafafa;
+}
+
 .header__link:not(:last-child) {
   margin-right: 33px;
 }
