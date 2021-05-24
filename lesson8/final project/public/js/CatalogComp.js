@@ -49,10 +49,10 @@ Vue.component('product', {
             
             
            <div class="product__card">
-                <a href="#"><img class="product__img" :src="product.img_src" alt="item"></a>
+                <a href="#" @click="$root.btnProductClicked()"><img class="product__img" :src="product.img_src" alt="item"></a>
                 <a class="product__cart" href="#"><img src="img/product-cart.svg" alt="cart"> Add to Cart</a>
                 <div class="product__text">
-                    <a class="product__name" href="#">{{product.product_name}}</a>
+                    <a class="product__name" href="#" @click="$root.btnProductClicked()">{{product.product_name}}</a>
                     <p class="text">{{product.description}}</p>
                     <p class="product__price">\${{product.price}}</p>
                </div>
