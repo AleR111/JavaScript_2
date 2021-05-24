@@ -22,7 +22,7 @@
 
     <section class="center">
 
-        <catalog v-show="showCatalog" ref="products"></catalog>
+        <catalog v-show="showCatalog" ref="catalog"></catalog>
 
         <cart v-show="showCart" ref="cart"></cart>
 
@@ -51,7 +51,7 @@
         </ul>
     </nav>
 
-    <products v-show="showProduct"></products>
+    <products ref="products" v-show="showProduct"></products>
 
 </div>
 

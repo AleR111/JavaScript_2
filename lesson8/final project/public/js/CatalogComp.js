@@ -33,7 +33,7 @@ Vue.component('product', {
     props: ['product', 'img'],
     data() {
       return {
-          cartAPI: API.cart,
+          cartAPI: this.$root.$refs.cart,
       };
     },
 
@@ -50,7 +50,7 @@ Vue.component('product', {
             
            <div class="product__card">
                 <a href="#" @click="$root.btnProductClicked()"><img class="product__img" :src="product.img_src" alt="item"></a>
-                <a class="product__cart" href="#"><img src="img/product-cart.svg" alt="cart"> Add to Cart</a>
+                <button class="product__cart" @click="cartAPI.addProduct(product)"><img src="img/product-cart.svg" alt="cart"> Add to Cart</button>
                 <div class="product__text">
                     <a class="product__name" href="#" @click="$root.btnProductClicked()">{{product.product_name}}</a>
                     <p class="text">{{product.description}}</p>
