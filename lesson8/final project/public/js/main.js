@@ -4,8 +4,22 @@ const app = new Vue({
     el: '#app',
     data: {
         userSearch: '',
+        showCart: false,
+        showCatalog: true,
+        showProduct: false,
     },
     methods: {
+        btnCartClicked() {
+            if (this.showCart) return;
+            this.showCart = true;
+            this.showCatalog = false;
+            this.showProduct = false;
+        },
+        btnProductClicked() {
+            if (this.showProduct) return;
+            this.showProduct = true;
+            this.showCatalog = false;
+        },
         getJson(url){
             return fetch(url)
                 .then(result => result.json())

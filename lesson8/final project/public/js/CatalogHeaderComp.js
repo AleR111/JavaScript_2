@@ -65,7 +65,7 @@ Vue.component('header-el', {
         </div>
         <a class="header__link header__link_hidden" href="registration.html"><img src="img/account.svg"
                                                                                   alt="account"></a>
-        <a class="header__link header__link_hidden" href="cart.html"><img src="img/cart.svg" alt="cart"></a>
+        <a @click="$root.btnCartClicked()" class="header__link header__link_hidden" href="#"><img src="img/cart.svg" alt="cart"></a>
     </div>
 </header>
 `

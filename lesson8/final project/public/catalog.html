@@ -18,40 +18,40 @@
 
     <nav-el></nav-el>
 
-    <filters-el></filters-el>
+    <filters-el v-show="showCatalog"></filters-el>
 
-    <section class="product__items center">
+    <section class="center">
 
+        <products v-show="showCatalog" ref="products"></products>
 
-        <products ref="products"></products>
-
+        <cart v-show="showCart" ref="cart"></cart>
 
     </section>
 
-</div>
+    <nav v-show="showCatalog" class="center">
+        <ul class="pagination">
+            <li class="pagination__item">
+                <a class="pagination__link " href="#">
+                    <img src="img/back.svg" alt="back">
+                </a>
+            </li>
+            <li class="pagination__item"><a class="pagination__link select_text" href="#">1</a></li>
+            <li class="pagination__item"><a class="pagination__link " href="#">2</a></li>
+            <li class="pagination__item"><a class="pagination__link " href="#">3</a></li>
+            <li class="pagination__item"><a class="pagination__link " href="#">4</a></li>
+            <li class="pagination__item"><a class="pagination__link " href="#">5</a></li>
+            <li class="pagination__item"><a class="pagination__link " href="#">6</a></li>
+            <li class="pagination__item pagination__dot">.....</li>
+            <li class="pagination__item"><a class="pagination__link " href="#">20</a></li>
+            <li class="pagination__item">
+                <a class="pagination__link " href="#">
+                    <img src="img/next.svg" alt="next">
+                </a>
+            </li>
+        </ul>
+    </nav>
 
-<nav class="center">
-    <ul class="pagination">
-        <li class="pagination__item">
-            <a class="pagination__link " href="#">
-                <img src="img/back.svg" alt="back">
-            </a>
-        </li>
-        <li class="pagination__item"><a class="pagination__link select_text" href="#">1</a></li>
-        <li class="pagination__item"><a class="pagination__link " href="#">2</a></li>
-        <li class="pagination__item"><a class="pagination__link " href="#">3</a></li>
-        <li class="pagination__item"><a class="pagination__link " href="#">4</a></li>
-        <li class="pagination__item"><a class="pagination__link " href="#">5</a></li>
-        <li class="pagination__item"><a class="pagination__link " href="#">6</a></li>
-        <li class="pagination__item pagination__dot">.....</li>
-        <li class="pagination__item"><a class="pagination__link " href="#">20</a></li>
-        <li class="pagination__item">
-            <a class="pagination__link " href="#">
-                <img src="img/next.svg" alt="next">
-            </a>
-        </li>
-    </ul>
-</nav>
+</div>
 
 <section class="advantage center">
     <div class="free__delivery">
