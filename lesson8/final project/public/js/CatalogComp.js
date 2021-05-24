@@ -1,4 +1,4 @@
-Vue.component('products', {
+Vue.component('catalog', {
     data(){
         return {
             catalogUrl: '',
