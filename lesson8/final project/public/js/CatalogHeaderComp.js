@@ -3,7 +3,9 @@ Vue.component('header-el', {
 <header class="header center">
     <div class="header__left">
         <a href="index.html"><img class="brand" src="img/logo.svg" alt="logo"></a>
+        
         <search></search>
+        
     </div>
     <div class="header__right">
         <input class="check__menu" id="switch" type="checkbox">
@@ -78,7 +80,7 @@ Vue.component('search', {
         }
     },
     template: `
-            <form action="#" class="search-form" v-on:input="$root.$refs.products.filter(userSearch)" @submit.prevent="$root.$refs.products.filter(userSearch)">
+            <form action="#" class="search-form" v-on:input="$root.$refs.catalog.filter(userSearch)" @submit.prevent="$root.btnCatalogClicked()">
                 <input type="text" class="search-field" v-model="userSearch">
                 <button class="btn-search" type="submit">
                     <img class="header__search" src="img/search.svg" alt="search">

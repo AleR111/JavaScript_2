@@ -20,6 +20,12 @@ const app = new Vue({
             this.showProduct = true;
             this.showCatalog = false;
         },
+        btnCatalogClicked() {
+            if (this.showCatalog) return;
+            this.showCatalog = true;
+            this.showProduct = false;
+            this.showCart = false;
+        },
         getJson(url){
             return fetch(url)
                 .then(result => result.json())
