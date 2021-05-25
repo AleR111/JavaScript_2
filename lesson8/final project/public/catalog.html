@@ -18,40 +18,11 @@
 
     <nav-el></nav-el>
 
-    <filters-el v-show="showCatalog"></filters-el>
+    <catalog v-show="showCatalog" ref="catalog"></catalog>
 
-    <section class="center">
+    <cart v-show="showCart" ref="cart"></cart>
 
-        <catalog v-show="showCatalog" ref="catalog"></catalog>
-
-        <cart v-show="showCart" ref="cart"></cart>
-
-    </section>
-
-    <nav v-show="showCatalog" class="center">
-        <ul class="pagination">
-            <li class="pagination__item">
-                <a class="pagination__link " href="#">
-                    <img src="img/back.svg" alt="back">
-                </a>
-            </li>
-            <li class="pagination__item"><a class="pagination__link select_text" href="#">1</a></li>
-            <li class="pagination__item"><a class="pagination__link " href="#">2</a></li>
-            <li class="pagination__item"><a class="pagination__link " href="#">3</a></li>
-            <li class="pagination__item"><a class="pagination__link " href="#">4</a></li>
-            <li class="pagination__item"><a class="pagination__link " href="#">5</a></li>
-            <li class="pagination__item"><a class="pagination__link " href="#">6</a></li>
-            <li class="pagination__item pagination__dot">.....</li>
-            <li class="pagination__item"><a class="pagination__link " href="#">20</a></li>
-            <li class="pagination__item">
-                <a class="pagination__link " href="#">
-                    <img src="img/next.svg" alt="next">
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    <products ref="products" v-show="showProduct"></products>
+    <products v-show="showProduct" ref="products"></products>
 
 </div>
 
@@ -164,7 +135,6 @@
 <script src="js/ProductsComp.js"></script>
 <script src="js/CatalogHeaderComp.js"></script>
 <script src="js/CatalogNavComp.js"></script>
-<script src="js/CatalogFiltersComp.js"></script>
 <script src="js/main.js"></script>
 
 </body>

@@ -69,7 +69,7 @@ Vue.component('cart', {
 <!--                </cart-item>-->
 <!--            </div>-->
 <!--        </div>-->
-        <div class="cart-block">
+        <section class="cart-block">
             <div class="item-cart cart-block__left">
                 <p v-if="!cartItems.length" class="cart__text_empty">Cart empty</p>
                 <cart-item class="cart-item" 
@@ -87,7 +87,7 @@ Vue.component('cart', {
             </div>
             
             <cart-block__right :totalPrice="getTotalPriceOfProduct" :cart-item="cartItems"></cart-block__right>
-        </div>
+        </section>
 `
 });
 
