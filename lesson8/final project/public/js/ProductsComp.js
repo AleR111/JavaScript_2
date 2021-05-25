@@ -2,13 +2,25 @@ Vue.component('products', {
 
     data() {
         return {
-            product: {}
+            product: {},
+            similarProducts: [],
+            products: this.$root.$refs.catalog.products,
         }
     },
 
     methods: {
         showFullProduct(product) {
             this.product = product;
+            this.getSimilarProducts(product.category)
+        },
+        getSimilarProducts(category) {
+            let i = 0;
+            this.products.forEach(elem => {
+                if (i >= 3) return
+                if (elem.category === category) this.similarProducts.push(elem);
+                i++
+            })
+            console.log(this.similarProducts)
         }
     },
 
@@ -18,7 +30,7 @@ Vue.component('products', {
                 <description__carousel :img = 'product.img_src'></description__carousel>
                 <description__border :product = 'product'></description__border>
             </section>
-            <product__items></product__items>
+            <product__items :similar-products = 'similarProducts'></product__items>
         </div>
     `
 
@@ -137,41 +149,42 @@ Vue.component('description__border', {
 })
 
 Vue.component('product__items', {
+
+    props: ['similarProducts'],
+
     template: `
         <section class="product__items center">
-
         <div class="product__cards">
-            <div class="product__card">
-                <a href="#"><img class="product__img" src="img/card-1.png" alt="item"></a>
-                <a class="product__cart" href="#"><img src="img/product-cart.svg" alt="cart"> Add to Cart</a>
-                <div class="product__text">
-                    <a class="product__name" href="#">ELLERY X M'O CAPSULE</a>
-                    <p class="text">Known for her sculptural takes on traditional tailoring, Australian arbiter of cool
-                        Kym Ellery teams up with Moda Operandi.</p>
-                    <p class="product__price">$52.00</p>
-                </div>
-            </div>
-            <div class="product__card">
-                <a href="#"><img class="product__img" src="img/card-7.png" alt="item"></a>
-                <a class="product__cart" href="#"><img src="img/product-cart.svg" alt="cart"> Add to Cart</a>
-                <div class="product__text">
-                    <a class="product__name" href="#">ELLERY X M'O CAPSULE</a>
-                    <p class="text">Known for her sculptural takes on traditional tailoring, Australian arbiter of cool
-                        Kym Ellery teams up with Moda Operandi.</p>
-                    <p class="product__price">$52.00</p>
-                </div>
-            </div>
-            <div class="product__card product__card_hidden">
-                <a href="#"><img class="product__img" src="img/card-3.png" alt="item"></a>
-                <a class="product__cart" href="#"><img src="img/product-cart.svg" alt="cart"> Add to Cart</a>
-                <div class="product__text">
-                    <a class="product__name" href="#">ELLERY X M'O CAPSULE</a>
-                    <p class="text">Known for her sculptural takes on traditional tailoring, Australian arbiter of cool
-                        Kym Ellery teams up with Moda Operandi.</p>
-                    <p class="product__price">$52.00</p>
-                </div>
-            </div>
+        <similar-prod ref="refref" v-for="item of similarProducts" 
+                :key="item.id_product"
+                :cart-item="item">
+                </similar-prod>
         </div>
     </section>
     `
+})
+
+Vue.component('similar-prod', {
+
+    props: ['cartItem'],
+
+    data() {
+        return {
+            cartAPI: this.$root.$refs.cart,
+            productsAPI: this.$root.$refs.products,
+        };
+    },
+
+    template: `
+        <div class="product__card">
+                <a href="#" @click="$root.btnProductClicked(), productsAPI.showFullProduct(cartItem)"><img class="product__img" :src="cartItem.img_src" alt="item"></a>
+                <button class="product__cart" @click="cartAPI.addProduct(cartItem)"><img src="img/product-cart.svg" alt="cart"> Add to Cart</button>
+                <div class="product__text">
+                    <a class="product__name" href="#" @click="$root.btnProductClicked(), productsAPI.showFullProduct(product)">{{cartItem.product_name}}</a>
+                    <p class="text">{{cartItem.description}}</p>
+                    <p class="product__price">\${{cartItem.price}}</p>
+                </div>
+            </div>
+    `
+
 })
