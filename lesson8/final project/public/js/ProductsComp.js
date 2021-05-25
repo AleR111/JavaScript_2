@@ -14,6 +14,8 @@ Vue.component('products', {
             this.getSimilarProducts(product.category)
         },
         getSimilarProducts(category) {
+            this.similarProducts = [];
+
             let i = 0;
             this.products.forEach(elem => {
                 if (i >= 3) return
@@ -180,7 +182,7 @@ Vue.component('similar-prod', {
                 <a href="#" @click="$root.btnProductClicked(), productsAPI.showFullProduct(cartItem)"><img class="product__img" :src="cartItem.img_src" alt="item"></a>
                 <button class="product__cart" @click="cartAPI.addProduct(cartItem)"><img src="img/product-cart.svg" alt="cart"> Add to Cart</button>
                 <div class="product__text">
-                    <a class="product__name" href="#" @click="$root.btnProductClicked(), productsAPI.showFullProduct(product)">{{cartItem.product_name}}</a>
+                    <a class="product__name" href="#" @click="productsAPI.showFullProduct(cartItem)">{{cartItem.product_name}}</a>
                     <p class="text">{{cartItem.description}}</p>
                     <p class="product__price">\${{cartItem.price}}</p>
                 </div>
