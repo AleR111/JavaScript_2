@@ -1,4 +1,8 @@
-const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+import cart from './CartComp'
+import products from './ProducsComp'
+import search from './CartCompComp'
+import error from './CatalogNavCompComp'
+import error from './CatalogNavCompComp'
 
 const app = new Vue({
     el: '#app',
@@ -75,3 +79,4 @@ const app = new Vue({
     }
 });
 
+export default app;
