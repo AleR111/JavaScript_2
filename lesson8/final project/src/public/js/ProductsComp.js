@@ -1,44 +1,6 @@
-Vue.component('products', {
+import cart from "./CartComp";
 
-    data() {
-        return {
-            product: {},
-            similarProducts: [],
-            products: this.$root.$refs.catalog.products,
-        }
-    },
-
-    methods: {
-        showFullProduct(product) {
-            this.product = product;
-            this.getSimilarProducts(product.category)
-        },
-        getSimilarProducts(category) {
-            this.similarProducts = [];
-
-            let i = 0;
-            this.products.forEach(elem => {
-                if (i >= 3) return
-                if (elem.category === category) this.similarProducts.push(elem);
-                i++
-            })
-            console.log(this.similarProducts)
-        }
-    },
-
-    template: `
-        <div>
-            <section class="description">
-                <description__carousel :img = 'product.img_src'></description__carousel>
-                <description__border :product = 'product'></description__border>
-            </section>
-            <product__items :similar-products = 'similarProducts'></product__items>
-        </div>
-    `
-
-});
-
-Vue.component('description__carousel', {
+const descriptionCarousel =  {
     props: ['img'],
     template: `
         <div class="description__carousel">
@@ -66,9 +28,9 @@ Vue.component('description__carousel', {
         </div>
     `
 
-});
+};
 
-Vue.component('description__border', {
+const descriptionBorder = {
 
     props: ['product'],
     data() {
@@ -148,25 +110,9 @@ Vue.component('description__border', {
         </div>
     `
 
-})
+};
 
-Vue.component('product__items', {
-
-    props: ['similarProducts'],
-
-    template: `
-        <section class="product__items center">
-        <div class="product__cards">
-        <similar-prod ref="refref" v-for="item of similarProducts" 
-                :key="item.id_product"
-                :cart-item="item">
-                </similar-prod>
-        </div>
-    </section>
-    `
-})
-
-Vue.component('similar-prod', {
+const similarProd = {
 
     props: ['cartItem'],
 
@@ -189,4 +135,72 @@ Vue.component('similar-prod', {
             </div>
     `
 
-})
+};
+
+const productItems = {
+
+    components: { similarProd },
+    props: ['similarProducts'],
+
+    template: `
+        <section class="product__items center">
+        <div class="product__cards">
+        <similar-prod ref="refref" v-for="item of similarProducts" 
+                :key="item.id_product"
+                :cart-item="item">
+                </similar-prod>
+        </div>
+    </section>
+    `
+};
+
+const products = {
+
+    components: { descriptionCarousel, descriptionBorder, productItems },
+    data() {
+        return {
+            product: {},
+            similarProducts: [],
+            products: this.$root.$refs.catalog.products,
+        }
+    },
+
+    methods: {
+        showFullProduct(product) {
+            this.product = product;
+            this.getSimilarProducts(product.category)
+        },
+        getSimilarProducts(category) {
+            this.similarProducts = [];
+
+            let i = 0;
+            this.products.forEach(elem => {
+                if (i >= 3) return
+                if (elem.category === category) this.similarProducts.push(elem);
+                i++
+            })
+            console.log(this.similarProducts)
+        }
+    },
+
+    template: `
+        <div>
+            <section class="description">
+                <description-carousel :img = 'product.img_src'></description-carousel>
+                <description-border :product = 'product'></description-border>
+            </section>
+            <product-items :similar-products = 'similarProducts'></product-items>
+        </div>
+    `
+
+};
+
+
+
+
+
+
+
+
+
+export default products;

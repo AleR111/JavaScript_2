@@ -1,5 +1,5 @@
 import cart from './CartComp'
-import products from './ProducsComp'
+import products from './ProductsComp'
 import search from './CartCompComp'
 import error from './CatalogNavCompComp'
 import error from './CatalogNavCompComp'
