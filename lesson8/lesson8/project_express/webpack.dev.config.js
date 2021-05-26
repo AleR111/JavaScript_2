@@ -42,6 +42,11 @@ module.exports = {
             template: 'src/public/index.html',
             filename: 'index.html',
             excludeChunks: ['server']
+        }),
+        new HtmlWebpackPlugin({
+            template: 'src/public/catalog.html',
+            filename: 'catalog.html',
+            excludeChunks: ['server']
         })
     ]
 };

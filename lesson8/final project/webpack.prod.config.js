@@ -60,7 +60,7 @@ module.exports = {
             excludeChunks: ['server']
         }),
         new MiniCssExtractPlugin({
-            filename: 'css/[name].css',
+            filename: 'style/[name].css',
             chunkFilename: '[id].css'
         })
     ]

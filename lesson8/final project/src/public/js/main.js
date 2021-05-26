@@ -4,8 +4,14 @@ import search from './CartCompComp'
 import error from './CatalogNavCompComp'
 import error from './CatalogNavCompComp'
 
-const app = new Vue({
+const app = {
     el: '#app',
+    components: {
+        cart,
+        products,
+        error,
+        search,
+    },
     data: {
         userSearch: '',
         showCart: false,
@@ -77,6 +83,6 @@ const app = new Vue({
     mounted() {
         console.log(this);
     }
-});
+};
 
 export default app;
