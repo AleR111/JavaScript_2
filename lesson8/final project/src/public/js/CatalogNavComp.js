@@ -1,4 +1,4 @@
-Vue.component('nav-el', {
+const navEl = {
     data() {
         return {
             showCart: this.$root.showCart,
@@ -16,4 +16,6 @@ Vue.component('nav-el', {
 
 </nav>
 `
-});
+};
+
+export default navEl;

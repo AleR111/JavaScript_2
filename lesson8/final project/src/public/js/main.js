@@ -1,8 +1,8 @@
 import cart from './CartComp'
 import products from './ProductsComp'
 import catalog from './CatalogComp'
-import error from './CatalogNavCompComp'
-import error from './CatalogNavCompComp'
+import header from './CatalogHeaderComp'
+import nav from './CatalogNavComp'
 
 const app = {
     el: '#app',
@@ -10,7 +10,8 @@ const app = {
         cart,
         products,
         catalog,
-        search,
+        header,
+        nav,
     },
     data: {
         userSearch: '',

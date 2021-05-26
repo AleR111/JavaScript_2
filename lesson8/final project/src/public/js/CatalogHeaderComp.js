@@ -1,4 +1,22 @@
-Vue.component('header-el', {
+const search = {
+    data(){
+        return {
+            userSearch: ''
+        }
+    },
+    template: `
+            <form action="#" class="search-form" v-on:input="$root.$refs.catalog.filter(userSearch)" @submit.prevent="$root.btnCatalogClicked()">
+                <input type="text" class="search-field" v-model="userSearch">
+                <button class="btn-search" type="submit">
+                    <img class="header__search" src="img/search.svg" alt="search">
+                </button>
+            </form>
+    `
+};
+
+const headerEl = {
+
+    components: { search },
     template: `
 <header class="header center">
     <div class="header__left">
@@ -71,20 +89,8 @@ Vue.component('header-el', {
     </div>
 </header>
 `
-});
+};
 
-Vue.component('search', {
-    data(){
-        return {
-            userSearch: ''
-        }
-    },
-    template: `
-            <form action="#" class="search-form" v-on:input="$root.$refs.catalog.filter(userSearch)" @submit.prevent="$root.btnCatalogClicked()">
-                <input type="text" class="search-field" v-model="userSearch">
-                <button class="btn-search" type="submit">
-                    <img class="header__search" src="img/search.svg" alt="search">
-                </button>
-            </form>
-    `
-});
+
+
+export default headerEl;

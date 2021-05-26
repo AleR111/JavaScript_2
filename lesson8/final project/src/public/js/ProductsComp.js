@@ -1,5 +1,3 @@
-import cart from "./CartComp";
-
 const descriptionCarousel =  {
     props: ['img'],
     template: `
