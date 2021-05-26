@@ -1,41 +1,5 @@
-Vue.component('catalog', {
-    data() {
-        return {
-            catalogUrl: '',
-            products: [],
-            filtered: [],
-            imgCatalog: 'https://placehold.it/200x150',
-        }
-    },
-    methods: {
-        filter(value) {
-            console.log(123)
-            let regexp = new RegExp(value, 'i');
-            this.filtered = this.products.filter(el => regexp.test(el.product_name));
-        }
-    },
-    mounted() {
-        this.$parent.getJson('/api/products')
-            .then(data => {
-                for (let el of data) {
-                    this.products.push(el);
-                    this.filtered.push(el);
-                }
-            });
-    },
-    template: `
-        <div>
-            <filters-el></filters-el>
-            <section class="center">
-                <div class="product__cards">
-                    <product ref="refref" v-for="item of filtered" :key="item.id_product" :img="imgCatalog" :product="item"></product>
-                </div>
-            </section>
-            <pagination></pagination>
-        </div>
-    `
-});
-Vue.component('product', {
+
+const product = {
     props: ['product', 'img'],
     data() {
         return {
@@ -65,9 +29,9 @@ Vue.component('product', {
                </div>
             </div>
     `
-});
+};
 
-Vue.component('filters-el', {
+const filtersEl = {
     template: `
 <section class="filters center">
         <details class="filter__categories">
@@ -173,9 +137,9 @@ Vue.component('filters-el', {
         </div>
 </section>
 `
-});
+};
 
-Vue.component('pagination', {
+const pagination = {
 
     template: `
     
@@ -204,4 +168,46 @@ Vue.component('pagination', {
     
     `
 
-})
+};
+
+const catalog = {
+
+    components: { product, filtersEl, pagination },
+    data() {
+        return {
+            catalogUrl: '',
+            products: [],
+            filtered: [],
+            imgCatalog: 'https://placehold.it/200x150',
+        }
+    },
+    methods: {
+        filter(value) {
+            console.log(123)
+            let regexp = new RegExp(value, 'i');
+            this.filtered = this.products.filter(el => regexp.test(el.product_name));
+        }
+    },
+    mounted() {
+        this.$parent.getJson('/api/products')
+            .then(data => {
+                for (let el of data) {
+                    this.products.push(el);
+                    this.filtered.push(el);
+                }
+            });
+    },
+    template: `
+        <div>
+            <filters-el></filters-el>
+            <section class="center">
+                <div class="product__cards">
+                    <product ref="refref" v-for="item of filtered" :key="item.id_product" :img="imgCatalog" :product="item"></product>
+                </div>
+            </section>
+            <pagination></pagination>
+        </div>
+    `
+};
+
+export default catalog;

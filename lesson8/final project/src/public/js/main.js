@@ -1,6 +1,6 @@
 import cart from './CartComp'
 import products from './ProductsComp'
-import search from './CartCompComp'
+import catalog from './CatalogComp'
 import error from './CatalogNavCompComp'
 import error from './CatalogNavCompComp'
 
@@ -9,7 +9,7 @@ const app = {
     components: {
         cart,
         products,
-        error,
+        catalog,
         search,
     },
     data: {
