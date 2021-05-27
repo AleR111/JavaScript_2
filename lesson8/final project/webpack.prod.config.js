@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -49,7 +50,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|svg|gif)$/,
-                use: ['url-loader']
+                use: ['file-loader']
             },
         ]
     },
@@ -62,6 +63,13 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'style/[name].css',
             chunkFilename: '[id].css'
-        })
+        }),
+        new CopyPlugin([
+            {
+                from: 'src/public/img',
+                to: 'img/[name].[ext]',
+                toType: 'template'
+            }
+        ])
     ]
 };
