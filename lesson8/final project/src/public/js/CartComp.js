@@ -26,22 +26,7 @@ const cartBlockRight = {
 
 const cartItem = {
     props: ['cartItem', 'img'],
-    template: `
-<!--                <div class="cart-item">-->
-<!--                <div class="product-bio">-->
-<!--                    <img :src="img" alt="Some image">-->
-<!--                    <div class="product-desc">-->
-<!--                        <p class="product-title">{{cartItem.product_name}}</p>-->
-<!--                        <p class="product-quantity">Количество: {{cartItem.quantity}}</p>-->
-<!--                        <p class="product-single-price">{{cartItem.price}}₽ за единицу</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="right-block">-->
-<!--                    <p class="product-price">{{cartItem.quantity*cartItem.price}}₽</p>-->
-<!--                    <button class="del-btn" @click="$emit('remove', cartItem)">&times;</button>-->
-<!--                </div>-->
-<!--            </div>-->
-            
+    template: `        
             <div class="order">
                 <div class="order__box-img"><img class="order__img" :src="cartItem.img_src" alt="man"></div>
                 <div class="order__descrip">
@@ -120,19 +105,6 @@ const cart = {
             });
     },
     template: `
-<!--        <div>-->
-<!--            <button class="btn-cart" type="button" @click="showCart = !showCart">Корзина</button>-->
-<!--            <div class="cart-block" v-show="showCart">-->
-<!--                <p v-if="!cartItems.length">Корзина пуста</p>-->
-<!--                <cart-item class="cart-item" -->
-<!--                v-for="item of cartItems" -->
-<!--                :key="item.id_product"-->
-<!--                :cart-item="item" -->
-<!--                :img="imgCart"-->
-<!--                @remove="remove">-->
-<!--                </cart-item>-->
-<!--            </div>-->
-<!--        </div>-->
         <section class="cart-block">
             <div class="item-cart cart-block__left">
                 <p v-if="!cartItems.length" class="cart__text_empty">Cart empty</p>

@@ -1,4 +1,3 @@
-
 const product = {
     props: ['product', 'img'],
     data() {
@@ -9,16 +8,6 @@ const product = {
     },
 
     template: `
-<!--    <div class="product-item">-->
-<!--                <img :src="img" alt="Some img">-->
-<!--                <div class="desc">-->
-<!--                    <h3>{{product.product_name}}</h3>-->
-<!--                    <p>{{product.price}}₽</p>-->
-<!--                    <button class="buy-btn" @click="cartAPI.addProduct(product)">Купить</button>-->
-<!--                </div>-->
-<!--            </div>-->
-            
-            
            <div class="product__card">
                 <a href="#" @click="$root.btnProductClicked(), productsAPI.showFullProduct(product)"><img class="product__img" :src="product.img_src" alt="item"></a>
                 <button class="product__cart" @click="cartAPI.addProduct(product)"><img src="img/product-cart.svg" alt="cart"> Add to Cart</button>
