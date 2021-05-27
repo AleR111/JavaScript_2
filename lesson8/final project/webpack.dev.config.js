@@ -39,7 +39,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'src/public/index.html',
+            template: 'src/public/catalog.html',
             filename: 'index.html',
             excludeChunks: ['server']
         })
