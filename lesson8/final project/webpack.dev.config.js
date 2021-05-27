@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -42,6 +43,13 @@ module.exports = {
             template: 'src/public/catalog.html',
             filename: 'index.html',
             excludeChunks: ['server']
-        })
+        }),
+        new CopyPlugin([
+            {
+                from: 'src/public/img',
+                to: 'img/[name].[ext]',
+                toType: 'template'
+            }
+        ])
     ]
 };
