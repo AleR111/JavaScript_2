@@ -1,4 +1,4 @@
-const navEl = {
+const crumb = {
     data() {
         return {
             showCart: this.$root.showCart,
@@ -18,4 +18,4 @@ const navEl = {
 `
 };
 
-export default navEl;
+export default crumb;

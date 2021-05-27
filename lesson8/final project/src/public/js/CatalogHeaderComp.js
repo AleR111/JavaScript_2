@@ -14,7 +14,7 @@ const search = {
     `
 };
 
-const headerEl = {
+const top = {
 
     components: { search },
     template: `
@@ -93,4 +93,4 @@ const headerEl = {
 
 
 
-export default headerEl;
+export default top;
