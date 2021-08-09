@@ -1,7 +1,7 @@
 Vue.component('cart', {
     data(){
       return {
-          imgCart: 'https://placehold.it/50x100',
+          imgCart: 'https://via.placeholder.com/200x150',
           cartUrl: '/getBasket.json',
           cartItems: [],
           showCart: false,
